@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']. '/Assignment_IntegrativeProgramming/Activity2/database/database.php';
+include $_SERVER['DOCUMENT_ROOT']. '/Integrative_Programming/Activity2-3/database/database.php';
 header('Content-Type: application/json');
 
 class UserTable extends Db{

@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/Assignment_IntegrativeProgramming//Activity2/database/database.php';
+include $_SERVER['DOCUMENT_ROOT'].'/Integrative_Programming/Activity4/database/database.php';
 header('Content-Type: application/json');
 
 class UserModel extends Db{
@@ -19,19 +19,16 @@ class UserModel extends Db{
     $password = $params['password'];
     $token = $params['token'];
 
-      $checkMail = $this->conn->query("SELECT * FROM users WHERE email='$email'");
+    $stmt = $this->conn->prepare("INSERT INTO users (name, email, password, token) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $name, $email, $password, $token);
 
-        if($checkMail->num_rows > 0){
-          return ['message' => 'email is already existed'];
-        }
-        
-          $isInserted = $this->conn->query("INSERT INTO users (name, email, password, token)
-            VALUES ('$name','$email','$password','$token')
-          ");
+    $isInserted = $stmt->execute();
 
-            if($isInserted){
-              return ['message' => 'user inserted successfully'];
-            }
+    if($isInserted){
+      return ['message' => 'user inserted successfully'];
+    } else {
+      return ['message' => 'Failed to insert user'];
+    }
   }
 
   public function getAll(){
@@ -50,12 +47,20 @@ class UserModel extends Db{
     }
 
     $email = $params['email'] ?? '';
-      $isSearch = $this->conn->query("SELECT * FROM users WHERE email LIKE '%$email%'");
 
-        if($isSearch->num_rows > 0){
-          $result = $isSearch->fetch_all(MYSQLI_ASSOC);
-          return $result;
-        }
+    $stmt = $this->conn->prepare("SELECT * FROM users WHERE email LIKE ?");
+    $emailParam = "%$email%";
+    $stmt->bind_param("s", $emailParam);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($result->num_rows > 0){
+      $data = $result->fetch_all(MYSQLI_ASSOC);
+      return $data;
+    } else {
+      return ['message' => 'No users found'];
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']. '/Assignment_IntegrativeProgramming//Activity2/migrations/create_users_table.php';
+include $_SERVER['DOCUMENT_ROOT']. '/Integrative_Programming/Activity4/migrations/create_users_table.php';
 
 $tbl = new UserTable();
 $result = $tbl->up();

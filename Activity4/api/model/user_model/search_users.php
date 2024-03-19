@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']. '/Assignment_IntegrativeProgramming//Activity2/model/User.php';
+include $_SERVER['DOCUMENT_ROOT']. '/Integrative_Programming/Activity4/model/User.php';
 
 $user_model = new UserModel();
 $data = $user_model->Search($_GET);
