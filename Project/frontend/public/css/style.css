@@ -1,0 +1,66 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  min-height: 100vh;
+
+}
+
+li{
+  list-style: none;
+  color: white;
+}
+
+.sidebar {
+  position: fixed;
+  background: rgb(59,58,26);
+  width: 20vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.sidebar li {
+  font-size: 24px;
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar li a {
+  text-decoration: none;
+  color: white;
+}
+
+.sidebar h3{
+  text-align: center;
+  padding-bottom: 24px;
+  color: white;
+}
+
+.sidebar h3:hover{
+  color:goldenrod;
+  transition: 0.5s;
+}
+.sidebar li:hover{
+  background: maroon;
+  color: white;
+}
+
+.content {
+  padding-left: 21%;
+  padding-top: 20px;
+  background-color: goldenrod;
+  padding-bottom: 10px;
+}
+
+.welcome {
+  padding-left: 22%;
+  padding-top: 10px;
+  font-size: 30px;
+}
